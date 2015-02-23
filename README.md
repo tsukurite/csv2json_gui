@@ -13,3 +13,8 @@ sv.junic6,Hogehoge,Mogeta
 
 これが
 
+```
+[{"user":"sv.junic1","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic2","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic3","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic4","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic5","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic6","field1":"Hogehoge","field2":"Mogeta"}]
+```
+
+こうなる
