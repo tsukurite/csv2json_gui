@@ -1,0 +1,23 @@
+{
+  "name": "createjson",
+  "version": "0.0.1",
+  "description": "csv to json",
+  "author": "sv.junic@gmail.com",
+  "scripts": {
+    "start": "grunt"
+  },
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "csv": "^0.4.1",
+    "fs": "0.0.2",
+    "iconv": "^2.1.6",
+    "lodash": "^3.3.0",
+    "node-csv": "^0.1.2",
+    "q": "^1.2.0"
+  },
+  "devDependencies": {
+    "grunt-este-watch": "^0.1.18",
+    "grunt-shell": "^1.1.1"
+  }
+}
