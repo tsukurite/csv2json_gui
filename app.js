@@ -15,7 +15,7 @@ function dumpCsv( path ) {
     console.log( 'CSV Loading:' + path + ' *=-');
     csv.parse(buf.toString(),{comment:'#'}, function(err, data) {
       json_array.push( data );
-      def.resolve( json_array);
+      def.resolve( json_array );
     });
   });
 
