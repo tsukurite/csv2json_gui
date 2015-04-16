@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  main#main
+    h1.title-lv1 csv2json
+    .stage
+      section#droppable.box.non-data
+        h2 ファイルをドロップしてください。
+        .data
+          .filename
+          .content
+      section#data.box.non-data
+        h2 変換後のjsonデータが表示されます。
+        .data
+          .content
+          a( href="/api/downlaod" ) Download
+
+block footer_scripts
+  script( src='/js/libs/jquery/1.11.2/jquery-1.11.2.min.js' )
+  script( src='/js/libs/velocity/1.2.1/velocity.min.js' )
+  script( src='/js/libs/lodash/3.3.1/lodash.min.js' )
+  script( src='/js/content/file.js' )
+
