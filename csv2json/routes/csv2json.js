@@ -21,9 +21,14 @@ function getJson (req, res, next) {
   //json_array.push( data );
   //def.resolve( json_array );
   
+  var dataName = _listRow.shift(0).split(',');
   var createJson = _.map( _listRow, function ( values ) {
-    console.log();
-    return values.split( ',' );
+    var newData = {};
+    var valuesArray = values.split(',');
+    _.forEach( valuesArray, function ( value, key, object ) {
+      newData[ dataName[key] ] = value;
+    });
+    return newData;
   });
   
   var str = JSON.stringify( createJson );

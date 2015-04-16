@@ -42,13 +42,19 @@
       }).done( function ( res ) {
         $response.find( '.content' ).text( res );
         $response.removeClass( 'non-data' );
+        var blob = new Blob([ res ], {
+          "type" : "application/force-download",
+          "disposition": "attachment; filename=download.json"
+        });
+        window.URL = window.URL || window.webkitURL;
+        $response.find( '.link' ).attr("href", window.URL.createObjectURL(blob));
       });
     }
     fileReader.readAsText(file);
   
     return false;
   }
- 
+
 
 
   // dragenter, dragover イベントのデフォルト処理をキャンセルします.
