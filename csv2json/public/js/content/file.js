@@ -50,7 +50,7 @@
         $response.find( '.link' ).attr("href", window.URL.createObjectURL(blob));
       });
     }
-    fileReader.readAsText(file);
+    fileReader.readAsText( file, 'SJIS' );
   
     return false;
   }
