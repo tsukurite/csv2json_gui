@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.header {
+  display: table;
+
+  color: #ffffff;
+  background-color: #0055ff;
+  border-bottom: 3px double #ffffff;
+
+  .title-lv1 {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.wrap {
+  padding: 10px;
+}
+
+.download {
+  border-top: 3px double #ffffff;
+  display: table;
+
+  color: #ffffff;
+  background-color: #0055ff;
+
+  a {
+    display: table-cell;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+    vertical-align: middle;
+    @include anchor-link-color( '&', #ffffff, #ffffff, #ffffff, #ffffff );
+
+    .flaticon-download168 {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 1em;
+    }
+  }
+}

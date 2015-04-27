@@ -1,0 +1,71 @@
+@mixin anchor-paragraph-link-color($self:"&", $link:$a-color-link, $visited:$a-color-visited, $hover:$a-color-hover, $active:$a-color-active ){
+
+  #{$self} {
+		text-decoration: underline;
+	}
+
+	#{$self}:active{
+		color:$active;
+	}
+
+	#{$self}:link{
+		color:$link;
+	}
+
+	#{$self}:visited{
+		color:$visited;
+	}
+
+	#{$self}:hover{
+		color:$hover;
+	}
+
+}
+@mixin anchor-link-color($self:"&", $link:$a-color-link, $visited:$a-color-visited, $hover:$a-color-hover, $active:$a-color-active ){
+
+  #{$self} {
+		text-decoration: none;
+	}
+
+	#{$self}:active{
+		color:$active;
+	}
+
+	#{$self}:link{
+		color:$link;
+	}
+
+	#{$self}:visited{
+		color:$visited;
+	}
+
+	#{$self}:hover{
+		color:$hover;
+	}
+}
+
+@mixin anchor-hoverlink-color($self:"&", $link:$a-hover-color-link, $visited:$a-hover-color-visited, $hover:$a-hover-color-hover, $active:$a-hover-color-active ){
+
+	#{$self} {
+		text-decoration: none;
+	}
+
+	#{$self}:active{
+		color:$active;
+	}
+
+	#{$self}:link{
+		color:$link;
+	}
+
+	#{$self}:visited{
+		color:$visited;
+	}
+
+	#{$self}:hover{
+		color:$hover;
+    text-decoration: underline;
+	}
+}
+
+

@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+@import "compass/reset";
+
+$headerHeight : 20px;
+$downloadHeight : 60px;
+
+// a
+$a-color-link    : #000000;
+$a-color-visited : #000000;
+$a-color-hover   : #000000;
+$a-color-active  : #000000;
+
+$a-hover-color-link    : #000000;
+$a-hover-color-visited : #000000;
+$a-hover-color-hover   : #666666;
+$a-hover-color-active  : #000000;
+
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+#droppable {
+  height: 100%;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  width: 100%;
+
+  font-size: 12px;
+  line-height: 14px;
+  height: $headerHeight;
+  text-align: center;
+
+  @include scale( 0 );
+}
+
+.main {
+  @include opacity( 0 );
+  background-color: #efefef;
+
+  @include display-box;
+  @include box-orient( horizontal );
+  @include box-align( stretch );
+  height: 100%;
+}
+
+.inputfile {
+  margin-top: $headerHeight;
+  margin-bottom: $downloadHeight;
+  width: 50%;
+  overflow-y: scroll;
+}
+
+.outputfile {
+  margin-top: $headerHeight;
+  margin-bottom: $downloadHeight;
+  width: 50%;
+  overflow-y: scroll;
+}
+
+.download {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: $downloadHeight;
+}

@@ -1,108 +1,179 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+html {
+  height: 100%;
+}
+
 body {
-  padding: 50px;
+  height: 100%;
+  padding: 0;
   font-size: 14px;
   line-height: 1.4;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #333333;
   background-color: #ffffff;
-
-  margin: 0px;
-  padding: 0px;
-}
-
-a {
-  color: #00B7FF;
-}
-
-h1 {
-  margin: 0px;
-  padding: 0px;
-  font-size: 16px;
-}
-
-h2 {
-  margin: 0px;
-  padding: 0px;
-  font-size: 14px;
-}
-
-#main {
-  width: 800px;
-  height: 480px;
-  padding: 10px;
-  background-color: #ffffff;
-}
-
-.title-lv1 {
-  padding: 10px;
-  background: #cccccc;
-  border-radius: 10px;
-}
-
-.stage {
-  display: -webkit-box;
-  -webkit-box-align:stretch;
-  height: 420px;
-  padding: 10px 0;
 }
 
 #droppable {
-  width: 375px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-}
-
-.box h2 {
-  display: none;
-  margin: 0 auto;
-}
-
-
-#response {
-  position: relative;
-  width: 395px;
   height: 100%;
-  margin-left: 10px;
 }
 
-#response .content {
-  height: 352px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-}
-
-#response .link {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 375px;
-  display: block;
-  height: 19px;
-  padding: 10px;
-  font-size: 14px;
-  background-color: #0099ff;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+  line-height: 14px;
+  height: 20px;
   text-align: center;
-  color: #ff3399;
-  text-decoration: none;
-  border-radius: 20px;
+  -webkit-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  transform: scale(0, 0);
 }
 
-.data {
+.main {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  background-color: #efefef;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -ms-box-align: stretch;
+  box-align: stretch;
   height: 100%;
 }
 
-.non-data {
-  display: -webkit-box;
-  -webkit-box-align: center;
+.inputfile {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  width: 50%;
+  overflow-y: scroll;
 }
 
-.non-data h2 {
-  display: block;
-}
-.non-data .data {
-  display: none;
+.outputfile {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  width: 50%;
+  overflow-y: scroll;
 }
 
+.download {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+}
 
+.header {
+  display: table;
+  color: #ffffff;
+  background-color: #0055ff;
+  border-bottom: 3px double #ffffff;
+}
+.header .title-lv1 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.wrap {
+  padding: 10px;
+}
+
+.download {
+  border-top: 3px double #ffffff;
+  display: table;
+  color: #ffffff;
+  background-color: #0055ff;
+}
+.download a {
+  display: table-cell;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+  vertical-align: middle;
+}
+.download a {
+  text-decoration: none;
+}
+.download a:active {
+  color: white;
+}
+.download a:link {
+  color: white;
+}
+.download a:visited {
+  color: white;
+}
+.download a:hover {
+  color: white;
+}
+.download a .flaticon-download168 {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1em;
+}

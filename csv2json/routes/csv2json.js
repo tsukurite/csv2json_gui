@@ -24,15 +24,26 @@ function getJson (req, res, next) {
 
   var dataName = _listRow.shift(0).split(',');
 
-  var createJson = _.map( _listRow, function ( values ) {
+  var formattedJson = _.map( _listRow, function ( values ) {
     var newData = {};
-    var valuesArray = values.split(',');
-    _.forEach( valuesArray, function ( value, key, object ) {
-      newData[ dataName[key] ] = value;
-    });
-    return newData;
+    if( values !== '' ){
+      var valuesArray = values.split(',');
+      _.forEach( valuesArray, function ( value, key, object ) {
+        newData[ dataName[key] ] = value;
+      });
+      return newData;
+    } else {
+      return false;
+    }
   });
-  
+
+  var createJson = [];
+  _.forEach( formattedJson, function ( value, key, object ) {
+    if( value !== false ) {
+      createJson.push (value );
+    }
+  });
+
   var str = JSON.stringify( createJson );
   res.json( str );
   return;
