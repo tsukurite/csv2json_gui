@@ -1,0 +1,21 @@
+{
+  "name": "createjson",
+  "version": "0.0.1",
+  "description": "csv to json",
+  "author": "sv.junic@gmail.com",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nw"
+  },
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "csv": "^0.4.1",
+    "iconv": "^2.1.6",
+    "lodash": "^3.3.0",
+    "node-csv": "^0.1.2",
+    "nw": "^0.12.1",
+    "q": "^1.2.0"
+  }
+}
