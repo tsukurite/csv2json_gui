@@ -1,7 +1,3 @@
-var fs = require('fs');
-var csv = require('csv');
-var Iconv = require('iconv').Iconv;
-var conv = new Iconv('cp932', 'UTF-8//TRANSLIT//IGNORE')
 var _ = require('lodash');
 
 function csv2json( _csvString ) {

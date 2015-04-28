@@ -11,10 +11,6 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "csv": "^0.4.1",
-    "iconv": "^2.1.6",
-    "lodash": "^3.3.0",
-    "node-csv": "^0.1.2",
-    "q": "^1.2.0"
+    "lodash": "^3.3.0"
   }
 }
