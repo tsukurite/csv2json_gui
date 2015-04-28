@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-  <p>start up</p>
-  <!-- なんかExpressが起動する前にmainのスクリプトが実行されちゃってたので、一旦立ち上げてからexpressのサーバに移動するように変更 -->
-  <script type="text/javascript" charset="utf-8">
-    window.location.href='http://localhost:3000';
-  </script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font/flaticon.css">
+  </head>
+  <body>
+    <div id="droppable">
+      <header id="header" class="header">
+        <h1 class="title-lv1">csv2json</h1>
+        <!-- button ?-->
+      </header>
+      <main id="main" class="main">
+        <section id="inputfile" class="inputfile">
+          <div class="wrap">
+            <h2>読み込まれたファイル</h2>
+            <div class="file"><span class="file-title">FileName: </span><span class="file-name"></span></div>
+            <div class="content"></div>
+          </div>
+        </section>
+        <section id="outputfile" class="outputfile">
+          <div class="wrap">
+            <h2>変換後のjsonデータ</h2>
+            <div class="file"><span class="file-title">FileName: </span><span class="file-name"></span></div>
+            <div class="content"></div>
+          </div>
+        </section>
+        <div id="download" class="download"><a href="./api/downlaod" download="csv2json.json" target="_blank" class="link"><span class="flaticon-download168"></span>Download json file.</a></div>
+      </main>
+    </div>
+    <script charset="utf-8" src="./js/libs/jquery/1.11.2/jquery-1.11.2.min.js"></script>
+    <script charset="utf-8" src="./js/libs/velocity/1.2.1/velocity.min.js"></script>
+    <script charset="utf-8" src="./js/libs/lodash/3.3.1/lodash.min.js"></script>
+    <script charset="utf-8" src="./js/content/file.js"></script>
+  </body>
 </html>

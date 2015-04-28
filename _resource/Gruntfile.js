@@ -1,6 +1,6 @@
-// #"Last Change: 24-Apr-2015."
+// #"Last Change: 28-Apr-2015."
 
-var ROOT = './public/';
+var DOCUMENT_ROOT = '../csv2json/';
 
 module.exports = function(grunt) {
 
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     },
     esteWatch: {
       options: {
-        dirs: [ ROOT + 'scss/**',  ROOT + 'css/**' ],
+        dirs: [ 'scss/**', 'coffee/**', 'jade/**', DOCUMENT_ROOT + 'css/**' ],
         livereload: {
           enabled: true,
           extensions: [ 'css' ],
@@ -26,6 +26,8 @@ module.exports = function(grunt) {
       },
       css    : function( filepath ) { return []; },
       scss   : function( filepath ) { return [ 'compass:prod' ]; },
+      jade   : function( filepath ) { return [ 'jade:html' ]; },
+      coffee : function( filepath ) { return [ 'coffee:compile' ]; },
     },
 
     compass: {
@@ -55,6 +57,45 @@ module.exports = function(grunt) {
           force: true
         }
       }
+    },
+
+    jade: {
+      html : {
+        options: {
+          client: false,
+          pretty: true,
+          data: function(dest, src) {},
+          basedir: '../'
+        },
+        files: [ {
+          cwd: "./jade/",
+          src: [
+            "*.jade",
+          ],
+          dest: DOCUMENT_ROOT,
+          expand: true,
+          ext: ".html"
+        }]
+      }
+    },
+
+    coffee: {
+      compile : {
+        options:{
+          bare: true
+        },
+        files:[{ 
+          expand: true,
+          bare: false,
+          cwd: './coffee/',
+          src: [
+            '*.coffee',
+            '**/*.coffee'
+          ],
+          dest: DOCUMENT_ROOT + 'js/content',
+          ext: '.js',
+        }]
+      }
     }
   });
 
@@ -64,6 +105,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-jade' );
   grunt.loadNpmTasks('grunt-este-watch');
 
   grunt.registerTask("default", ["connect","esteWatch"]);

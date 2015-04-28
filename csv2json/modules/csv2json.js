@@ -1,24 +1,11 @@
 var fs = require('fs');
 var csv = require('csv');
 var Iconv = require('iconv').Iconv;
-//var conv = new Iconv('cp932','utf-8');
 var conv = new Iconv('cp932', 'UTF-8//TRANSLIT//IGNORE')
 var _ = require('lodash');
 
-var express  = require('express');
-var router = express.Router();
-
-function getHtml(req, res, next) {
-  res.render( 'index' );
-  return
-}
-
-function getJson (req, res, next) {
-  var csv = req.body.csv;
-
-  //var buf = conv.convert( req.body.csv );
-  //csv = buf.toString();
-  //var _listRow = csv.replace( /(\r\n|\r|\n)/g, '\n' ).split( '\n' );
+function csv2json( _csvString ) {
+  var csv = _csvString;
 
   var _listRow = csv.replace( /(\r\n|\r|\n)/g, '\n' ).split( '\n' );
 
@@ -45,14 +32,7 @@ function getJson (req, res, next) {
   });
 
   var str = JSON.stringify( createJson );
-  res.json( str );
-  return;
+  return str;
 };
 
-/* GET users listing. */
-router.get('/', getHtml );
-
-/* POST users listing. */
-router.post('/', getJson );
-
-module.exports = router;
+module.exports = csv2json;

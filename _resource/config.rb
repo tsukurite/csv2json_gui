@@ -1,8 +1,8 @@
 
-css_dir = "./public/css"
-sass_dir = "./public/scss"
-images_dir = "./public/img"
-javascripts_dir = "./public/js"
+css_dir = "../csv2json/css"
+sass_dir = "./scss"
+images_dir = "../csv2json/img"
+javascripts_dir = "../csv2json/js"
 
 asset_cache_buster :none
 

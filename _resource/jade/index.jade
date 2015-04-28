@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta( charset="utf-8" )
+    title= csv2json
+    link( rel='stylesheet', href='./css/style.css' )
+    link( rel='stylesheet', href='./css/font/flaticon.css' )
+  body
+    #droppable
+      header#header.header
+        h1.title-lv1 csv2json
+        // button ?
+
+      main#main.main
+
+        section#inputfile.inputfile
+          .wrap
+            h2 読み込まれたファイル
+            .file
+              span.file-title FileName: 
+              span.file-name
+            .content
+
+        section#outputfile.outputfile
+          .wrap
+            h2 変換後のjsonデータ
+            .file
+              span.file-title FileName: 
+              span.file-name
+            .content
+
+        #download.download
+          a.link( href="./api/downlaod" download="csv2json.json" target="_blank" )
+            | <span class="flaticon-download168"></span>Download json file.
+
+    script( charset="utf-8" src='./js/libs/jquery/1.11.2/jquery-1.11.2.min.js' )
+    script( charset="utf-8" src='./js/libs/velocity/1.2.1/velocity.min.js' )
+    script( charset="utf-8" src='./js/libs/lodash/3.3.1/lodash.min.js' )
+    script( charset="utf-8" src='./js/content/file.js' )
