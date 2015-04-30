@@ -12,5 +12,12 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.3.0"
+  },
+  "window": {
+    "title": "csv2json",
+    "icon": "link.png",
+    "toolbar": false,
+    "frame": true,
+    "position": "mouse"
   }
 }
