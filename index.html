@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>csv2json gui by tsukurite</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>csv2json gui</h1>
+        <h2>CSVファイルをjsonにするためのアプリケーション。コマンドラインで作ったものをアプリケーション化したもの。</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/tsukurite/csv2json_gui/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/tsukurite/csv2json_gui/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/tsukurite/csv2json_gui" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="csv2json" class="anchor" href="#csv2json" aria-hidden="true"><span class="octicon octicon-link"></span></a>csv2json</h1>
+
+<p>csv(input.csv)をjson(output.json)に変換するだけのアプリ</p>
+
+<pre><code>user,field1,field2
+sv.junic1,Hogehoge,Mogeta
+sv.junic2,Hogehoge,Mogeta
+sv.junic3,Hogehoge,Mogeta
+sv.junic4,Hogehoge,Mogeta
+sv.junic5,Hogehoge,Mogeta
+sv.junic6,Hogehoge,Mogeta
+</code></pre>
+
+<p>これが</p>
+
+<pre><code>[{"user":"sv.junic1","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic2","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic3","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic4","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic5","field1":"Hogehoge","field2":"Mogeta"},{"user":"sv.junic6","field1":"Hogehoge","field2":"Mogeta"}]
+</code></pre>
+
+<p>こうなる</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
