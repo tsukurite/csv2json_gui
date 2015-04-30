@@ -18,11 +18,8 @@
   "window": {
     "title": "csv2json",
     "icon": "link.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "position": "mouse"
-  },
-  "devDependencies": {
-    "nw": "^0.12.1"
   }
 }
