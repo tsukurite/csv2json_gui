@@ -1,34 +1,33 @@
 var _ = require('lodash');
+var csv = require('csv');
+var q = require('q');
 
 function csv2json( _csvString ) {
-  var csv = _csvString;
+  var def = q.defer();
 
-  var _listRow = csv.replace( /(\r\n|\r|\n)/g, '\n' ).split( '\n' );
+  var _listRow;
 
-  var dataName = _listRow.shift(0).split(',');
+  csv.parse( _csvString, {comment:'#'}, function(err, data) {
 
-  var formattedJson = _.map( _listRow, function ( values ) {
-    var newData = {};
-    if( values !== '' ){
-      var valuesArray = values.split(',');
-      _.forEach( valuesArray, function ( value, key, object ) {
-        newData[ dataName[key] ] = value;
+    _listRow = data;
+
+    var propertyList = _listRow.shift(0);
+
+    var createJson =  _.map( _listRow, function ( values ) {
+        var newData = {};
+        _.forEach( values, function ( value, key, object ) {
+          // 指定されていない列がCSV上にあった場合、無視
+          if( typeof propertyList[key] === 'string' ) {
+            newData[ propertyList[key] ] = value;
+          }
+        });
+        return newData;
       });
-      return newData;
-    } else {
-      return false;
-    }
+    console.log( createJson );
+    def.resolve( JSON.stringify( createJson ) );
   });
 
-  var createJson = [];
-  _.forEach( formattedJson, function ( value, key, object ) {
-    if( value !== false ) {
-      createJson.push (value );
-    }
-  });
-
-  var str = JSON.stringify( createJson );
-  return str;
+  return def.promise;
 };
 
 module.exports = csv2json;

@@ -16,24 +16,27 @@
     var file, fileReader;
     file = event.originalEvent.dataTransfer.files[0];
     fileReader = new FileReader;
+    fileReader.readAsText(file, 'SJIS');
     fileReader.onload = function(event) {
-      var blob, json, newFileName, resultdata;
+      var resultdata;
       cancelEvent(event);
       resultdata = event.target.result;
       $inputfile.find('.file-name').text(file.name);
       $inputfile.find('.content').text(resultdata);
-      json = csv2json(resultdata);
-      newFileName = file.name.replace(/\.csv$/, '.json');
-      $outputfile.find('.file-name').text(newFileName);
-      $outputfile.find('.content').text(json);
-      blob = new Blob([json], {
-        'type': 'application/force-download',
-        'disposition': 'attachment; filename=' + newFileName
+      return csv2json(resultdata).done(function(_json) {
+        var blob, json, newFileName;
+        json = _json;
+        newFileName = file.name.replace(/\.csv$/, '.json');
+        $outputfile.find('.file-name').text(newFileName);
+        $outputfile.find('.content').text(json);
+        blob = new Blob([json], {
+          'type': 'application/force-download',
+          'disposition': 'attachment; filename=' + newFileName
+        });
+        window.URL = window.URL || window.webkitURL;
+        $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr('download', newFileName);
       });
-      window.URL = window.URL || window.webkitURL;
-      $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr('download', newFileName);
     };
-    fileReader.readAsText(file, 'SJIS');
     return false;
   };
   init = function() {

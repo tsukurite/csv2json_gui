@@ -24,6 +24,8 @@
     # ファイルの内容は FileReader で読み込みます.
     fileReader = new FileReader
 
+    fileReader.readAsText file, 'SJIS'
+
     fileReader.onload = (event) ->
       # デフォルトの処理をキャンセルします.
       cancelEvent event
@@ -34,27 +36,27 @@
       $inputfile.find('.content').text resultdata
 
       # json変換
-      json = csv2json( resultdata )
+      csv2json( resultdata )
+        .done( ( _json )->
+          json = _json
 
-      #responseエリアの更新
-      newFileName = file.name.replace(/\.csv$/, '.json')
-
-      $outputfile.find('.file-name').text newFileName
-      $outputfile.find('.content').text json
-
-      # ファイルダウンロード用のURL作成
-      blob = new Blob([ json ],
-        'type': 'application/force-download'
-        'disposition': 'attachment; filename=' + newFileName)
-      window.URL = window.URL or window.webkitURL
-
-      # ファイルダウンロード用のリンク更新
-      $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr 'download', newFileName
-      return
-
-
-    fileReader.readAsText file, 'SJIS'
-    false
+          #responseエリアの更新
+          newFileName = file.name.replace(/\.csv$/, '.json')
+    
+          $outputfile.find('.file-name').text newFileName
+          $outputfile.find('.content').text json
+    
+          # ファイルダウンロード用のURL作成
+          blob = new Blob([ json ],
+            'type': 'application/force-download'
+            'disposition': 'attachment; filename=' + newFileName)
+          window.URL = window.URL or window.webkitURL
+    
+          # ファイルダウンロード用のリンク更新
+          $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr 'download', newFileName
+          return
+        )
+    return false
 
   init = ->
     # File API が使用できない場合は諦めます.
