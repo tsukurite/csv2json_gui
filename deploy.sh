@@ -15,8 +15,8 @@ mv ../.node_modules node_modules
 
 cd ../
 
-cp csv2json/app.nw build/Windows/32bit/_resource/
-cp csv2json/app.nw build/Windows/64bit/_resource/
+cp csv2json/app.nw build/Windows/32bit/
+#cp csv2json/app.nw build/Windows/64bit/
 mv csv2json/app.nw build/MacOS/csv2json.app/Contents/Resources/app.nw
 
 cp ./dev_package.json csv2json/package.json
