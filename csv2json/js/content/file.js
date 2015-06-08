@@ -1,12 +1,16 @@
 (function(window, document, $) {
-  var $download, $droppable, $header, $inputfile, $main, $outputfile, cancelEvent, csv2json, handleDroppedFile, init, initLoadAnimation;
+  var $download, $droppable, $header, $inputfile, $main, $outputfile, cancelEvent, csv2jsonic, handleDroppedFile, init, initLoadAnimation;
   $header = void 0;
   $main = void 0;
   $inputfile = void 0;
   $outputfile = void 0;
   $droppable = void 0;
   $download = void 0;
-  csv2json = require('./modules/csv2json');
+  csv2jsonic = require('csv2jsonic')();
+  csv2jsonic.setup({
+    charset: 'utf-8',
+    delimitter: ':'
+  });
   cancelEvent = function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -14,30 +18,38 @@
   };
   handleDroppedFile = function(event) {
     var file, fileReader;
+    event.preventDefault();
     file = event.originalEvent.dataTransfer.files[0];
     fileReader = new FileReader;
     fileReader.readAsText(file, 'SJIS');
     fileReader.onload = function(event) {
-      var resultdata;
+      var blob, json, newFileName, resultArray, resultSplit, resultdata;
       cancelEvent(event);
       resultdata = event.target.result;
       $inputfile.find('.file-name').text(file.name);
       $inputfile.find('.content').text(resultdata);
-      return csv2json(resultdata).done(function(_json) {
-        var blob, json, newFileName;
-        json = _json;
-        newFileName = file.name.replace(/\.csv$/, '.json');
-        $outputfile.find('.file-name').text(newFileName);
-        $outputfile.find('.content').text(json);
-        blob = new Blob([json], {
-          'type': 'application/force-download',
-          'disposition': 'attachment; filename=' + newFileName
-        });
-        window.URL = window.URL || window.webkitURL;
-        $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr('download', newFileName);
+      resultSplit = resultdata.split(/\r\n|\r|\n/);
+      resultArray = [];
+      _.forEach(resultSplit, function(data) {
+        var row;
+        row = data;
+        if (row !== '') {
+          row = row.replace(/","/g, ',').replace(/^\"/g, '').replace(/\"$/g, '');
+          return resultArray.push(row.split(/[^\\],/));
+        }
       });
+      json = JSON.stringify(csv2jsonic.convert(resultArray));
+      json = json.replace(/\\\\\\/g, '\\');
+      newFileName = file.name.replace(/\.csv$/i, '.json');
+      $outputfile.find('.file-name').text(newFileName);
+      $outputfile.find('.content').text(json);
+      blob = new Blob([json], {
+        'type': 'application/force-download',
+        'disposition': 'attachment; filename=' + newFileName
+      });
+      window.URL = window.URL || window.webkitURL;
+      return $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr('download', newFileName);
     };
-    return false;
   };
   init = function() {
     if (!window.FileReader) {

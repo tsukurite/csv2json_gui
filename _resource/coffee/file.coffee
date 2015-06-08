@@ -8,7 +8,13 @@
   $download   = undefined
 
   # require modules
-  csv2json = require( './modules/csv2json' )
+  csv2jsonic = require( 'csv2jsonic' )()
+
+  # option setup
+  csv2jsonic.setup( {
+    charset   : 'utf-8'
+    delimitter: ':'
+  })
 
   # Cancel
   cancelEvent = (event) ->
@@ -19,6 +25,8 @@
 
   # Drop
   handleDroppedFile = (event) ->
+    event.preventDefault()
+
     # ファイルは複数ドロップされる可能性がありますが, ここでは 1 つ目のファイルを扱います.
     file = event.originalEvent.dataTransfer.files[0]
     # ファイルの内容は FileReader で読み込みます.
@@ -35,28 +43,44 @@
       $inputfile.find('.file-name').text file.name
       $inputfile.find('.content').text resultdata
 
-      # json変換
-      csv2json( resultdata )
-        .done( ( _json )->
-          json = _json
+      ## 文字列を配列に変換
+      resultSplit = resultdata.split( /\r\n|\r|\n/ )
+      resultArray = []
 
-          #responseエリアの更新
-          newFileName = file.name.replace(/\.csv$/, '.json')
+      _.forEach( resultSplit, ( data )->
+        row = data
+        if row != ''
+          row = row
+            .replace( /","/g, ',' )
+            .replace( /^\"/g, '' )
+            .replace( /\"$/g, '' )
+
+          # \,を削除しないため、ここではエスケープ文字を削除しない
+
+          resultArray.push( row.split( /[^\\],/ ) )
+      )
+
+      # json変換
+      json = JSON.stringify( csv2jsonic.convert( resultArray ) )
+
+      # json内にエスケープ文字が増えてしまうので削除
+      json = json.replace( /\\\\\\/g, '\\' )
+
+      #responseエリアの更新
+      newFileName = file.name.replace(/\.csv$/i, '.json')
     
-          $outputfile.find('.file-name').text newFileName
-          $outputfile.find('.content').text json
+      $outputfile.find('.file-name').text newFileName
+      $outputfile.find('.content').text json
     
-          # ファイルダウンロード用のURL作成
-          blob = new Blob([ json ],
-            'type': 'application/force-download'
-            'disposition': 'attachment; filename=' + newFileName)
-          window.URL = window.URL or window.webkitURL
+      # ファイルダウンロード用のURL作成
+      blob = new Blob([ json ],
+        'type': 'application/force-download'
+        'disposition': 'attachment; filename=' + newFileName)
+      window.URL = window.URL or window.webkitURL
     
-          # ファイルダウンロード用のリンク更新
-          $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr 'download', newFileName
-          return
-        )
-    return false
+      # ファイルダウンロード用のリンク更新
+      $download.find('> a').attr('href', window.URL.createObjectURL(blob)).attr 'download', newFileName
+    return
 
   init = ->
     # File API が使用できない場合は諦めます.
