@@ -35,11 +35,14 @@
         row = data;
         if (row !== '') {
           row = row.replace(/","/g, ',').replace(/^\"/g, '').replace(/\"$/g, '');
-          return resultArray.push(row.split(/[^\\],/));
         }
+        row = row.replace(/([^\\]),/gm, '$1,,');
+        row = row.replace(/\\/gm, '');
+        return resultArray.push(row.split(/,,/gm));
       });
       json = JSON.stringify(csv2jsonic.convert(resultArray));
-      json = json.replace(/\\\\\\/g, '\\');
+      console.table(csv2jsonic.convert(resultArray));
+      json = json.replace(/\\\\,/g, '\,');
       newFileName = file.name.replace(/\.csv$/i, '.json');
       $outputfile.find('.file-name').text(newFileName);
       $outputfile.find('.content').text(json);

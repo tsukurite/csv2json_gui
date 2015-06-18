@@ -50,21 +50,26 @@
       _.forEach( resultSplit, ( data )->
         row = data
         if row != ''
+          # "で区切られたフォーマットの場合、"がないフォーマットに変換
           row = row
             .replace( /","/g, ',' )
             .replace( /^\"/g, '' )
             .replace( /\"$/g, '' )
 
-          # \,を削除しないため、ここではエスケープ文字を削除しない
+        # CSVのセパレータ,部分を,,に変換
+        row = row.replace( /([^\\]),/gm, '$1,,' )
 
-          resultArray.push( row.split( /[^\\],/ ) )
+        # エスケープ文字を削除
+        row = row.replace( /\\/gm, '' )
+        
+        resultArray.push( row.split( /,,/gm ) )
       )
 
       # json変換
       json = JSON.stringify( csv2jsonic.convert( resultArray ) )
 
       # json内にエスケープ文字が増えてしまうので削除
-      json = json.replace( /\\\\\\/g, '\\' )
+      json = json.replace( /\\\\,/g, '\,' )
 
       #responseエリアの更新
       newFileName = file.name.replace(/\.csv$/i, '.json')
