@@ -1,5 +1,5 @@
 {
-  "name": "createjson",
+  "name": "csv2jsonic_gui",
   "version": "0.0.1",
   "description": "csv to json",
   "author": "sv.junic@gmail.com",
@@ -19,7 +19,7 @@
   "window": {
     "title": "csv2json",
     "icon": "link.png",
-    "toolbar": false,
+    "toolbar": true,
     "frame": true,
     "position": "mouse"
   }

@@ -1,2 +1,2 @@
 # cd ./build/Windows/64bit/
-# copy /b nw.exe+app.nw csv2json.exe
+# copy /b nw.exe+app.nw csv2jsonic.exe
