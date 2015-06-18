@@ -19,7 +19,7 @@
   "window": {
     "title": "csv2json",
     "icon": "link.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "position": "mouse"
   }
