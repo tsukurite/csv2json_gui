@@ -11,10 +11,10 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "csv": "^0.4.1",
-    "csv2jsonic": "^1.0.3",
-    "q": "^1.3.0",
-    "lodash": "^3.3.0"
+    "csv": "^5.1.3",
+    "csv2jsonic": "^1.0.4",
+    "q": "^1.5.1",
+    "lodash": "^4.17.15"
   },
   "window": {
     "title": "csv2json",
